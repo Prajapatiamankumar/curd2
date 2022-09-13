@@ -1,0 +1,47 @@
+ //this.toastr.success("Success done", "user");
+    //this.toastr.error("Error done", "user");
+    //this.toastr.info("Info done", "user");
+    //this.toastr.warning("Warning done", "user");
+    //Swal.fire('Any fool can use a computer')
+   // Swal.fire({
+   //   title: 'Are you sure?',
+   //   text: "You won't be able to revert this!",
+   //   icon: 'warning',
+   //   showCancelButton: true,
+   //   confirmButtonColor: '#3085d6',
+   //   cancelButtonColor: '#d33',
+   //   confirmButtonText: 'Yes, delete it!',
+   //   cancelButtonText: 'Yes, delete it!'
+   // }).then((result) => {
+    //  if (result.isConfirmed) {
+       // Swal.fire(
+       //   'Deleted!',
+       //   'Your file has been deleted.',
+       //   'success'
+       // )}
+       // else{
+       // Swal.fire(
+       //   'Cancel!',
+       //   'Your file has been saved.',
+       //   'error'
+      //  )}
+      
+    //})
+    /*<div class="card">
+  <h5 class="card-header card-header-color">User Registration</h5>
+  <div class="card-body">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Modal title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+*/

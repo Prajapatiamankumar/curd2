@@ -1,0 +1,150 @@
+<div class="card">
+  <h5 class="card-header card-header-color">User Registration</h5>
+  <div class="card-body">
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">{{formTitle}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+
+        <!--------Form start------->
+        <form [formGroup]="addForm" (ngSubmit)="addUser()">
+          <div class="row mb-3">
+            <div class="form-group col">
+              <label>Title</label>
+              <select class="form-control" formControlName="title"
+                [ngClass]="{'is-invalid':submitted && addForm.controls['title'].errors}">
+                <option value="">-Select-</option>
+                <option value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Ms">Ms</option>
+              </select>
+              <div *ngIf="submitted && ctrl['title'].errors" class="invalid-feedback">
+                Title is Required!!
+              </div>
+            </div>
+            <div class="form-group col-5">
+              <label>First Name</label>
+              <input type="text" class="form-control" formControlName="firstName" placeholder="Enter Your First Name"
+                [ngClass]="{'is-invalid':submitted && ctrl['firstName'].errors}">
+              <div *ngIf="submitted && addForm.controls['firstName'].errors" class="invalid-feedback">
+                First Name is Required!!
+              </div>
+            </div>
+            <div class="form-group col-5">
+              <label>Last Name</label>
+              <input type="text" class="form-control" formControlName="lastName" placeholder="Enter Your Last Name"
+                [ngClass]="{'is-invalid':submitted && ctrl['lastName'].errors}">
+              <div *ngIf="submitted && ctrl['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="ctrl['lastName'].errors['required']">Last Name is required!!</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="form-group col-5">
+              <label>
+                Date of Birth
+              </label>
+              <input type="date" class="form-control" formControlName="dob"
+                [ngClass]="{'is-invalid':submitted && ctrl['dob'].errors}">
+              <div *ngIf="submitted && ctrl['dob'].errors" class="invalid-feedback">
+                Date of Birth is Required!!
+              </div>
+            </div>
+            <div class="form-group col-5">
+              <label>Email</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="Enter Your Email.."
+                [ngClass]="{'is-invalid':submitted && ctrl['email'].errors}">
+              <div *ngIf="submitted && ctrl['email'].errors" class="invalid-feedback">
+                Email is Required!!
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="form-group col-5">
+              <label>Password</label>
+              <input type="password" class="form-control" formControlName="password" placeholder="Enter Password"
+                [ngClass]="{'is-invalid':submitted && addForm.controls['password'].errors}">
+              <div *ngIf="submitted && addForm.controls['password'].errors" class="invalid-feedback">
+                Password is Required!!
+              </div>
+            </div>
+            <!-----confirm password -->
+            <div class="form-group col-5">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Enter Confirm Password"
+                [ngClass]="{'is-invalid':submitted && ctrl['confirmPassword'].errors}">
+              <div *ngIf="submitted && ctrl['confirmPassword'].errors" class="invalid-feedback">
+                <div *ngIf="ctrl['confirmPassword'].errors['required']">
+                  Confirm Password is Required!!
+                </div>
+                <div *ngIf="ctrl['confirmPassword'].errors['mustMatch']">
+                  Password and Confirm Password must be same!!
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---terms and condition -->
+          <div class="row mb-3">
+            <div class="form-group col form-check">
+               <input type="checkbox" class="form-check-input" id="acceptTerms" formControlName="acceptTerms"
+                [ngClass]="{'is-invalid':submitted && ctrl['acceptTerms'].errors}" />
+              <label for="acceptTerms" class="form-check-lebel">Accept Terms & Conditions</label>
+              <div *ngIf="submitted && ctrl['acceptTerms'].errors" class="invalid-feedback">
+                <div *ngIf="ctrl['acceptTerms'].errors['required']">
+                  Accept Terms and Conditions is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-success me-2" (click)="addUser()">{{buttonText}}</button>
+              <button type="button" class="btn btn-danger" (click)="cancelForm()">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <!---------form end-------->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+
+    <h5 class="modal-title">User List</h5>
+    <div style="text-align:right">
+      <button class="btn btn-outline-primary mb-2 me-2" (click)="openXl(content)">Add user</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group col">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>DoB.</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userData">
+              <td>{{user.title}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.dob}}</td>
+              <td>{{user.email}}</td>
+              <td>
+                <i class="fa fa-edit me-3" style="color: blue" (click)="edit(user.id)"></i>
+                <i class="fa fa-trash-o" style="color: red" (click)="delete(user.id)"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
